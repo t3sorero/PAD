@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Locale;
+import android.util.Log;
 
 public class CalculatorAddResultActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class CalculatorAddResultActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.button2);
         Intent intent = getIntent();
         double res = intent.getDoubleExtra("Resultado", 0);
-        String format = String.format(Locale.getDefault(),"%,.2f",res);
+        String format = String.format(Locale.getDefault(),"%,.10f",res);
         txresult.setText(format);
         btnBack.setOnClickListener(view -> finish());
 

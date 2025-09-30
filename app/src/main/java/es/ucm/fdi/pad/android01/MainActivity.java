@@ -2,6 +2,7 @@ package es.ucm.fdi.pad.android01;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private EditText sumando1;
     private EditText sumando2;
@@ -27,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Log.v(TAG, "Verbose: onCreate iniciado");
+        Log.d(TAG, "Debug: Configuración inicial completa");
+        Log.i(TAG, "Info: MainActivity cargada correctamente");
+        Log.w(TAG, "Warning: Este es un aviso de prueba");
+        Log.e(TAG, "Error: Algo salió mal en onCreate");
+
         Button sumar = findViewById(R.id.button);
         sumando1 = findViewById(R.id.editTextNumberDecimal3);
         sumando2 = findViewById(R.id.editTextNumberDecimal4);
