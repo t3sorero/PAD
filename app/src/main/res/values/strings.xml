@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Android01</string>
-    <string name="sumar">Sumar</string>
-    <string name="sumando_1">Sumando 1</string>
-    <string name="sumando_2">Sumando 2</string>
-    <string name="fill_fields">Rellena los dos campos</string>
-    <string name="invalid_number">Introduce un número válido</string>
-    <string name="volver">Volver</string>
+    <string name="add">Add</string>
+    <string name="operator_1">Operator 1</string>
+    <string name="operator_2">Operator 2</string>
+    <string name="fill_field">Fill in the field</string>
+    <string name="invalid_number">Enter a valid number</string>
+    <string name="back">Back</string>
 
 </resources>

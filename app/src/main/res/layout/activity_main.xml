@@ -5,27 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/android:colorBackground"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="@string/sumar"
+        android:text="@string/add"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal4"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal3"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="@string/sumando_1"
+        android:hint="@string/operator_1"
         android:inputType="numberDecimal"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,13 +40,13 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="@string/sumando_2"
+        android:hint="@string/operator_2"
         android:inputType="numberDecimal"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.47000003" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import android.util.Log;
 
 public class CalculatorAddResultActivity extends AppCompatActivity {
 
+    private static final String TAG = CalculatorAddResultActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +28,13 @@ public class CalculatorAddResultActivity extends AppCompatActivity {
             return insets;
         });
 
+        Log.v(TAG, "Vista resultado cargada correctamente");
         TextView txresult = findViewById(R.id.textView);
         Button btnBack = findViewById(R.id.button2);
         Intent intent = getIntent();
         double res = intent.getDoubleExtra("Resultado", 0);
-        String format = String.format(Locale.getDefault(),"%,.10f",res);
-        txresult.setText(format);
+        txresult.setText(String.valueOf(res));
+        Log.v(TAG, "Volver a la actividad anterior");
         btnBack.setOnClickListener(view -> finish());
 
     }
