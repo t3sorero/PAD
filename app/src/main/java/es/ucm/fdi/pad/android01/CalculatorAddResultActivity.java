@@ -33,7 +33,9 @@ public class CalculatorAddResultActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.button2);
         Intent intent = getIntent();
         double res = intent.getDoubleExtra("Resultado", 0);
-        txresult.setText(String.valueOf(res));
+        String formatted = String.format(Locale.getDefault(), "%.4f", res);
+        double parsed = Double.parseDouble(formatted);
+        txresult.setText(String.valueOf(parsed).replaceFirst("\\.0$", ""));
         Log.v(TAG, "Volver a la actividad anterior");
         btnBack.setOnClickListener(view -> finish());
 
