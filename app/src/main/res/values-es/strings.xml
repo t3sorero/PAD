@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android01</string>
+    <string name="add">Sumar</string>
+    <string name="operator_1">Sumando 1</string>
+    <string name="operator_2">Sumando 2</string>
+    <string name="fill_field">Rellena el campo</string>
+    <string name="invalid_number">Introduce un número válido</string>
+    <string name="back">Volver</string>
+</resources>
