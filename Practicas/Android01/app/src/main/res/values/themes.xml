@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Android01" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/neutral_mid</item>
+        <item name="android:colorBackground">@color/neutral_mid</item>
+        <item name="colorSurface">@color/neutral_mid</item>
+        <item name="colorOnBackground">@color/neutral_almost_black</item>
+    </style>
+
+    <style name="Theme.Android01" parent="Base.Theme.Android01" />
+</resources>

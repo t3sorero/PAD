@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Android01</string>
+    <string name="add">Add</string>
+    <string name="operator_1">Operator 1</string>
+    <string name="operator_2">Operator 2</string>
+    <string name="fill_field">Fill in the field</string>
+    <string name="invalid_number">Enter a valid number</string>
+    <string name="back">Back</string>
+
+</resources>
