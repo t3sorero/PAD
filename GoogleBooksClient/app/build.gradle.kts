@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "es.ucm.fdi.pad.android01"
+    namespace = "es.ucm.fdi.pad.googlebooksclient"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "es.ucm.fdi.pad.android01"
+        applicationId = "es.ucm.fdi.pad.googlebooksclient"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -40,5 +40,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
+    implementation(libs.recyclerview)
+    implementation(libs.cardview)
+    implementation(libs.appcompat.v170)
 }
