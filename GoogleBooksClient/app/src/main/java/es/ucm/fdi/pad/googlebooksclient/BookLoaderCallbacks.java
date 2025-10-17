@@ -18,7 +18,8 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<B
     @NonNull
     @Override
     public Loader<List<BookInfo>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new BookLoader();
+        //A Hacer, lo puse para que no diese fallo
+        return new BookLoader(null, args.getString(EXTRA_QUERY), args.getString(EXTRA_PRINT_TYPE));
     }
 
     @Override
