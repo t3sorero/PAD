@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name" translatable="false">GoogleBooksClient</string>
-    <string name="search_for_your_book">Search for your book</string>
+    <string name="search_for_your_book">Books and magazines finder</string>
     <string name="title">Title</string>
     <string name="author">Author</string>
     <string name="search_for_magazine">Search for magazine</string>
     <string name="search">Search</string>
+    <string name="books">Books</string>
+    <string name="magazines">Magazines</string>
+    <string name="all">All</string>
 </resources>
