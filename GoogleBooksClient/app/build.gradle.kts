@@ -1,3 +1,4 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -14,6 +15,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //LEER API_KEY DESDE local.properties
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String", "GOOGLE_BOOKS_API_KEY", "\"${properties.getProperty("GOOGLE_BOOKS_API_KEY")}\"")
+    }
+
+    buildFeatures {
+
+        buildConfig = true
     }
 
     buildTypes {
@@ -37,6 +50,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

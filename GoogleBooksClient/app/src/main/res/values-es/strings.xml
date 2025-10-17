@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="search_for_your_book">Busca tu libro</string>
+    <string name="search_for_your_book">Buscador de libros y revistas</string>
     <string name="title">Título</string>
     <string name="author">Autor</string>
     <string name="search_for_magazine">Busca tu revista</string>
     <string name="search">Buscar</string>
+    <string name="books">Libros</string>
+    <string name="magazines">Revistas</string>
+    <string name="all">Todos</string>
 </resources>
