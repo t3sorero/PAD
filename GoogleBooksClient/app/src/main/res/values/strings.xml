@@ -8,4 +8,11 @@
     <string name="books">Books</string>
     <string name="magazines">Magazines</string>
     <string name="all">All</string>
+
+    <string name="error_at_least_one_field">At least one field is required</string>
+    <string name="error_title_required">Title is required</string>
+
+    <string name="results">Results</string>
+    <string name="no_results">No results found</string>
+    <string name="loading">Loading…</string>
 </resources>
