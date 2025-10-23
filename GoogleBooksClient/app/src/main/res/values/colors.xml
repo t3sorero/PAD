@@ -1,5 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- ========================================= -->
+    <!-- COLORES BASE DEL SISTEMA -->
+    <!-- ========================================= -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- ========================================= -->
+    <!-- PALETA PRINCIPAL - AZUL (Brand) -->
+    <!-- ========================================= -->
+    <color name="blue_50">#E8F0FF</color>
+    <color name="blue_100">#CFE0FF</color>
+    <color name="blue_300">#66A6FF</color>
+    <color name="blue_500">#1E7BFF</color>      <!-- Primary -->
+    <color name="blue_700">#0F59D6</color>
+    <color name="blue_900">#09306B</color>
+
+    <!-- ========================================= -->
+    <!-- ESCALA DE GRISES / NEUTROS -->
+    <!-- ========================================= -->
+    <!-- Modo Claro -->
+    <color name="neutral_white">#FFFFFF</color>           <!-- Fondo de cards -->
+    <color name="neutral_offwhite">#F5F5F5</color>        <!-- Fondo general claro -->
+    <color name="neutral_light_gray">#EEEEEE</color>      <!-- Fondo alternativo -->
+
+    <!-- Grises medios -->
+    <color name="gray_100">#F5F6F8</color>
+    <color name="gray_200">#EBEDF1</color>
+    <color name="gray_300">#D7D9E0</color>
+    <color name="gray_400">#AEB0BA</color>
+    <color name="gray_500">#757880</color>
+    <color name="gray_600">#4A4D54</color>
+
+    <!-- Modo Oscuro -->
+    <color name="neutral_dark_gray">#2C2C2C</color>       <!-- Fondo de cards oscuro -->
+    <color name="neutral_dark">#1E1E1E</color>            <!-- Fondo general oscuro -->
+    <color name="neutral_almost_black">#121212</color>    <!-- Negro casi puro -->
+
+    <!-- ========================================= -->
+    <!-- COLORES SEMÁNTICOS -->
+    <!-- ========================================= -->
+    <color name="success">#2BB04A</color>
+    <color name="warning">#FFCA28</color>
+    <color name="error">#E53935</color>
+    <color name="info">#1E7BFF</color>
+
+    <!-- ========================================= -->
+    <!-- PALETA COMPLEMENTARIA  -->
+    <!-- ========================================= -->
+    <!-- Verdes -->
+    <color name="green_100">#E7F9EC</color>
+    <color name="green_300">#7EE08A</color>
+    <color name="green_500">#2BB04A</color>
+    <color name="green_700">#1A7A33</color>
+
+    <!-- Amarillos -->
+    <color name="yellow_100">#FFF9E6</color>
+    <color name="yellow_300">#FFE08A</color>
+    <color name="yellow_500">#FFCA28</color>
+    <color name="yellow_700">#B38600</color>
+
+    <!-- Rojos -->
+    <color name="red_100">#FFEDEE</color>
+    <color name="red_300">#FF9AA8</color>
+    <color name="red_500">#E53935</color>
+    <color name="red_700">#B71C1C</color>
+
+    <!-- Turquesas -->
+    <color name="teal_100">#DFFAF6</color>
+    <color name="teal_300">#66E1D9</color>
+    <color name="teal_500">#00BFA5</color>
+    <color name="teal_700">#008E74</color>
+
+    <!-- Naranjas -->
+    <color name="orange_100">#FFF3E6</color>
+    <color name="orange_300">#FFB889</color>
+    <color name="orange_500">#FF8A38</color>
+    <color name="orange_700">#B9551F</color>
+
+    <!-- Rosas -->
+    <color name="pink_100">#FFF0F6</color>
+    <color name="pink_300">#FF9BCF</color>
+    <color name="pink_500">#E91E63</color>
+    <color name="pink_700">#AD1457</color>
+
+    <!-- Morados -->
+    <color name="purple_100">#F3E9FF</color>
+    <color name="purple_300">#C7A8FF</color>
+    <color name="purple_500">#7C4DFF</color>
+    <color name="purple_700">#4A1AB6</color>
+
+    <!-- Marrones -->
+    <color name="brown_100">#FAF5F1</color>
+    <color name="brown_300">#D6B89A</color>
+    <color name="brown_500">#8D6E63</color>
+    <color name="brown_700">#5D4037</color>
 </resources>

@@ -1,6 +1,10 @@
 package es.ucm.fdi.pad.googlebooksclient;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,7 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookInfo {
+public class BookInfo implements Parcelable {
 
     private static final String TAG = BookInfo.class.getSimpleName();
     private String title;
@@ -22,6 +26,44 @@ public class BookInfo {
         this.title = title;
         this.authors = authors;
         this.infoLink = infoLink;
+    }
+
+    //Mismo orden en lectura y escritura!!
+    protected BookInfo(Parcel in) {
+        title = in.readString();
+        authors = in.readString();
+        String urlString = in.readString();
+        try {
+            infoLink = urlString != null && !urlString.isEmpty() ? new URL(urlString) : null;
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "Error al deserializar URL " + urlString, e);
+            infoLink=null;
+        }
+    }
+
+    public static final Creator<BookInfo> CREATOR = new Creator<BookInfo>() {
+        @Override
+        public BookInfo createFromParcel(Parcel in) {
+            return new BookInfo(in);
+        }
+
+        @Override
+        public BookInfo[] newArray(int size) {
+            return new BookInfo[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //Mismo orden en lectura y escritura!!
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(authors);
+        dest.writeString(infoLink != null ? infoLink.toString() : null);
     }
 
     public String getTitle() {
@@ -108,4 +150,5 @@ public class BookInfo {
                 ", infoLink=" + infoLink +
                 '}';
     }
+
 }

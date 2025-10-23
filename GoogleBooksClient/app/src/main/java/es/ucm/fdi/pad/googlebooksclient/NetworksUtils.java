@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -75,7 +74,6 @@ public class NetworksUtils {
             response.append(line);
         }
 
-        //Si la respuesta esta vacia, devuelve null???
         if (response.length() == 0) {
             return null;
         }

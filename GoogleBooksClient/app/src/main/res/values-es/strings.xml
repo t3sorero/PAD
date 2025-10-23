@@ -8,4 +8,12 @@
     <string name="books">Libros</string>
     <string name="magazines">Revistas</string>
     <string name="all">Todos</string>
+    <string name="error_at_least_one_field">Se requiere al menos un campo</string>
+    <string name="error_title_required">El título es obligatorio</string>
+    <string name="results">Resultados</string>
+    <string name="no_results">No se encontraron resultados</string>
+    <string name="loading">Cargando…</string>
+    <string name="error_loading">Error cargando resultados</string>
+    <string name="error_loading_link">Error cargando el link</string>
+    <string name="error_link_unavailable">Error link no disponible</string>
 </resources>
