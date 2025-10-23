@@ -13,4 +13,7 @@
     <string name="results">Resultados</string>
     <string name="no_results">No se encontraron resultados</string>
     <string name="loading">Cargando…</string>
+    <string name="error_loading">Error cargando resultados</string>
+    <string name="error_loading_link">Error cargando el link</string>
+    <string name="error_link_unavailable">Error link no disponible</string>
 </resources>

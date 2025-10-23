@@ -9,18 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class ResultsActivity extends AppCompatActivity {
 
-    private static String TAG = ResultsActivity.class.getSimpleName();
+    private static final String TAG = ResultsActivity.class.getSimpleName();
 
     private RecyclerView recyclerView;
     private BookResultAdapter bookResultAdapter;
-
-    private TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +32,28 @@ public class ResultsActivity extends AppCompatActivity {
             return insets;
         });
 
-        //ActionBar para volver ara atras
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Resultados");
-            Log.i(TAG, "ActionBar configurado");
-        }
 
         recyclerView = findViewById(R.id.recyclerView2);
-        resultTextView = findViewById(R.id.textView2);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Log.i(TAG, "LayoutManager configurado");
 
         ArrayList<BookInfo> bookList = getIntent().getParcelableArrayListExtra("books");
 
-        if(bookList == null){
+        if (bookList == null) {
             bookList = new ArrayList<>();
             Log.w(TAG, "No se encontraron libros en la intent");
         }
         Log.i(TAG, "Libros recibidos: " + bookList.size());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+            getSupportActionBar().setTitle(R.string.results + "(" + bookList.size() + ")");
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+            Log.i(TAG, "ActionBar configurado");
+        }
 
         bookResultAdapter = new BookResultAdapter(this);
         recyclerView.setAdapter(bookResultAdapter);
@@ -57,22 +61,21 @@ public class ResultsActivity extends AppCompatActivity {
         updateBookResultsList(bookList);
 
         if (bookList.isEmpty()) {
-            resultTextView.setText("No se han encontrado resultados");
             Log.w(TAG, "No se han encontrado resultados");
         } else {
-            resultTextView.setText("Resultados (" + bookList.size() + ")");
             Log.i(TAG, "Se han encontrado " + bookList.size() + " resultados");
         }
     }
 
-    private void updateBookResultsList(ArrayList<BookInfo> books){
+    private void updateBookResultsList(ArrayList<BookInfo> books) {
         bookResultAdapter.setBooksData(books);
         bookResultAdapter.notifyDataSetChanged();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
+        onBackPressed();
         return true;
     }
+
 }
