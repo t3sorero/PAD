@@ -18,4 +18,5 @@
     <string name="error_loading">Error loading results</string>"
     <string name="error_loading_link">Error loading link</string>
     <string name="error_link_unavailable">Error link unavailable</string>
+
 </resources>

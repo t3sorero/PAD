@@ -7,16 +7,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.FrameLayout;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -29,12 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static final int BOOK_LOADER_ID = 1;
 
     private EditText titleEditText;
     private EditText authorEditText;
     private RadioGroup typeRadioGroup;
+    private FrameLayout loadingOverlay;
+    private TextView resultMessageTextView;
 
     private BookLoaderCallbacks bookLoaderCallbacks;
 
@@ -52,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        Log.d(TAG, "onCreate INICIADO");
+        Log.d(TAG, "onCreate llamado");
 
         titleEditText = findViewById(R.id.editTextText);
         authorEditText = findViewById(R.id.editTextText2);
         typeRadioGroup = findViewById(R.id.radioGroup4);
+        loadingOverlay = findViewById(R.id.loadingOverlay);
+        resultMessageTextView = findViewById(R.id.resultMessageTextView);
 
         typeRadioGroup.check(R.id.radioButton5);
 
@@ -94,24 +95,25 @@ public class MainActivity extends AppCompatActivity {
 
         LoaderManager loaderManager = LoaderManager.getInstance(this);
         if (loaderManager.getLoader(BOOK_LOADER_ID) != null) {
-            Log.d(TAG, "Loader ya existe");
+            Log.i(TAG, "Loader ya existe");
             loaderManager.initLoader(BOOK_LOADER_ID, null, bookLoaderCallbacks);
         }
 
-        Log.d(TAG, "onCreate FINALIZADO");
+        Log.d(TAG, "onCreate finalizado");
     }
 
     public void searchBooks(View view) {
-        Log.d(TAG, "searchBooks LLAMADO");
+        Log.d(TAG, "searchBooks llamado");
 
         clearFieldError(titleEditText);
         clearFieldError(authorEditText);
+        hideResultMessage();
 
         String title = titleEditText.getText().toString().trim();
         String author = authorEditText.getText().toString().trim();
 
-        Log.d(TAG, "Título: " + title);
-        Log.d(TAG, "Autor: " + author);
+        Log.i(TAG, "Título: " + title);
+        Log.i(TAG, "Autor: " + author);
 
         int selectedId = typeRadioGroup.getCheckedRadioButtonId();
         String printType = "all";
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (selectedId == R.id.radioButton2) {
             printType = "books";
-            Log.d(TAG, "Tipo seleccionado: LIBROS");
+            Log.i(TAG, "Tipo seleccionado: LIBROS");
 
             if (title.isEmpty() && author.isEmpty()) {
                 showFieldError(titleEditText, R.string.error_at_least_one_field);
@@ -142,28 +144,19 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (selectedId == R.id.radioButton4) {
             printType = "magazines";
-            Log.d(TAG, "Tipo seleccionado: REVISTAS");
+            Log.i(TAG, "Tipo seleccionado: REVISTAS");
 
-            if (title.isEmpty() && author.isEmpty()) {
-                showFieldError(titleEditText, R.string.error_at_least_one_field);
-                showFieldError(authorEditText, R.string.error_at_least_one_field);
-                Log.w(TAG, "Validación falló: ambos campos vacíos en revistas");
+            if (title.isEmpty()) {
+                showFieldError(titleEditText, R.string.error_title_required);
+                Log.w(TAG, "Validación falló: título vacío para revistas");
                 isValid = false;
             } else {
-                if (!author.isEmpty()) {
-                    queryBuilder.append("inauthor:").append(author);
-                }
-                if (!title.isEmpty()) {
-                    if (queryBuilder.length() > 0) {
-                        queryBuilder.append("+");
-                    }
-                    queryBuilder.append("intitle:").append(title);
-                }
+                queryBuilder.append(title);
             }
 
         } else if (selectedId == R.id.radioButton5) {
             printType = "all";
-            Log.d(TAG, "Tipo seleccionado: TODO");
+            Log.i(TAG, "Tipo seleccionado: TODO");
 
             if (title.isEmpty() && author.isEmpty()) {
                 showFieldError(titleEditText, R.string.error_at_least_one_field);
@@ -190,8 +183,11 @@ public class MainActivity extends AppCompatActivity {
 
         String queryString = queryBuilder.toString();
 
-        Log.d(TAG, "Query construido: " + queryString);
-        Log.d(TAG, "PrintType: " + printType);
+        Log.i(TAG, "Query construido: " + queryString);
+        Log.i(TAG, "PrintType: " + printType);
+
+        showLoadingOverlay();
+        Log.i(TAG, "Mostrando overlay de carga");
 
         Bundle queryBundle = new Bundle();
         queryBundle.putString(BookLoaderCallbacks.EXTRA_QUERY, queryString);
@@ -202,7 +198,44 @@ public class MainActivity extends AppCompatActivity {
         LoaderManager.getInstance(this)
                 .restartLoader(BOOK_LOADER_ID, queryBundle, bookLoaderCallbacks);
 
-        Log.d(TAG, "searchBooks FINALIZADO");
+        Log.d(TAG, "searchBooks finalizado");
+    }
+
+    private void showLoadingOverlay() {
+        loadingOverlay.setVisibility(View.VISIBLE);
+        loadingOverlay.setAlpha(0f);
+        loadingOverlay.animate()
+                .alpha(1f)
+                .setDuration(200)
+                .start();
+    }
+
+    private void hideLoadingOverlay() {
+        loadingOverlay.animate()
+                .alpha(0f)
+                .setDuration(200)
+                .withEndAction(() -> loadingOverlay.setVisibility(View.GONE))
+                .start();
+    }
+
+    private void showResultMessage(String message) {
+        resultMessageTextView.setText(message);
+        resultMessageTextView.setVisibility(View.VISIBLE);
+        resultMessageTextView.setAlpha(0f);
+        resultMessageTextView.animate()
+                .alpha(1f)
+                .setDuration(300)
+                .start();
+    }
+
+    private void hideResultMessage() {
+        if (resultMessageTextView.getVisibility() == View.VISIBLE) {
+            resultMessageTextView.animate()
+                    .alpha(0f)
+                    .setDuration(200)
+                    .withEndAction(() -> resultMessageTextView.setVisibility(View.GONE))
+                    .start();
+        }
     }
 
     private void showFieldError(EditText field, int msgResId) {
@@ -215,9 +248,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearFieldError(EditText field) {
         field.setError(null);
-        field.setHintTextColor(ContextCompat.getColor(this, android.R.color.darker_gray));
+        field.setHintTextColor(ContextCompat.getColor(this, R.color.gray_400));
         field.setBackgroundTintList(ColorStateList.valueOf(
-                ContextCompat.getColor(this, android.R.color.darker_gray)));
+                ContextCompat.getColor(this, R.color.blue_500)));
     }
 
     private class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<BookInfo>> {
@@ -229,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Loader<List<BookInfo>> onCreateLoader(int id, @Nullable Bundle args) {
-            Log.d(TAG, "onCreateLoader LLAMADO");
+            Log.d(TAG, "onCreateLoader llamado");
 
             String queryString = "";
             String printType = "all";
@@ -237,38 +270,43 @@ public class MainActivity extends AppCompatActivity {
             if (args != null) {
                 queryString = args.getString(EXTRA_QUERY, "");
                 printType = args.getString(EXTRA_PRINT_TYPE, "all");
-                Log.d(TAG, "onCreateLoader - Query: " + queryString);
-                Log.d(TAG, "onCreateLoader - PrintType: " + printType);
+                Log.i(TAG, "Query: " + queryString);
+                Log.i(TAG, "PrintType: " + printType);
             } else {
-                Log.w(TAG, "onCreateLoader - Bundle es NULL");
+                Log.w(TAG, "Bundle es NULL");
             }
 
             BookLoader loader = new BookLoader(MainActivity.this, queryString, printType);
             Log.d(TAG, "BookLoader creado");
             return loader;
         }
+
         @Override
         public void onLoadFinished(@NonNull Loader<List<BookInfo>> loader, List<BookInfo> data) {
-            Log.d(TAG, "onLoadFinished LLAMADO");
-            Log.d(TAG, "Datos recibidos: " + (data != null ? data.size() + " libros" : "NULL"));
+            Log.d(TAG, "onLoadFinished llamado");
+            Log.i(TAG, "Datos recibidos: " + (data != null ? data.size() + " libros" : "NULL"));
+
+
+
+            hideLoadingOverlay();
+
+            Log.i(TAG, "Ocultando overlay de carga");
 
             if (data == null || data.isEmpty()) {
-                Toast.makeText(MainActivity.this,
-                        R.string.no_results,
-                        Toast.LENGTH_SHORT).show();
+                showResultMessage(getString(R.string.no_results));
                 Log.w(TAG, "No hay resultados para mostrar");
                 return;
             }
 
             ArrayList<BookInfo> booksList = new ArrayList<>(data);
 
-            Log.d(TAG, "Preparando Intent para ResultsActivity");
+            Log.i(TAG, "Preparando Intent para ResultsActivity");
 
             Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
             intent.putParcelableArrayListExtra("books", booksList);
 
-            Log.d(TAG, "Libros en Intent: " + booksList.size());
-            Log.d(TAG, "Iniciando ResultsActivity");
+            Log.i(TAG, "Libros en Intent: " + booksList.size());
+            Log.i(TAG, "Iniciando ResultsActivity");
 
             startActivity(intent);
 
@@ -277,12 +315,12 @@ public class MainActivity extends AppCompatActivity {
 
             LoaderManager.getInstance(MainActivity.this).destroyLoader(BOOK_LOADER_ID);
 
-            Log.d(TAG, "onLoadFinished FINALIZADO");
+            Log.d(TAG, "onLoadFinished finalizado");
         }
+
         @Override
         public void onLoaderReset(@NonNull Loader<List<BookInfo>> loader) {
             Log.d(TAG, "onLoaderReset llamado");
-            // Limpiar referencias si es necesario
         }
     }
 }

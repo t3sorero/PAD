@@ -40,7 +40,7 @@ public class BookResultAdapter extends RecyclerView.Adapter<BookResultAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item, parent, false);
-        Log.i(TAG, "onCreateViewHolder llamado");
+        Log.d(TAG, "onCreateViewHolder llamado");
         return new ViewHolder(view);
     }
 
@@ -92,7 +92,6 @@ public class BookResultAdapter extends RecyclerView.Adapter<BookResultAdapter.Vi
 
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 
-                    // Verificar que hay una app que pueda abrir el link
                     if (intent.resolveActivity(context.getPackageManager()) != null) {
                         context.startActivity(intent);
                         Log.i(TAG, "URL abierta correctamente");
