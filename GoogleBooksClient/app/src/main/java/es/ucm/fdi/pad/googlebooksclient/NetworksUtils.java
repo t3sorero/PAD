@@ -22,7 +22,8 @@ public class NetworksUtils {
 
 
     public static URL buildURL(String queryString, String printType) {
-        Uri builtUri = Uri.parse(BOOKS_BASE_URL).buildUpon().appendQueryParameter(QUERY_PARAM, queryString).appendQueryParameter(MAX_RESULTS, "20").appendQueryParameter(PRINT_TYPE, printType).appendQueryParameter(API_KEY_PARAM, BuildConfig.GOOGLE_BOOKS_API_KEY).build();
+        //ESTA LIMITADO A UN MÁXIMO DE 10 RESULTADOS
+        Uri builtUri = Uri.parse(BOOKS_BASE_URL).buildUpon().appendQueryParameter(QUERY_PARAM, queryString).appendQueryParameter(PRINT_TYPE, printType).appendQueryParameter(MAX_RESULTS, "20").appendQueryParameter(API_KEY_PARAM, BuildConfig.GOOGLE_BOOKS_API_KEY).build();
 
         URL url = null;
         try {
@@ -58,7 +59,8 @@ public class NetworksUtils {
             }
             InputStream inputStream = httpURLConnection.getInputStream();
             return readStream(inputStream);
-        }finally {
+        }
+        finally {
             if(httpURLConnection != null){
                 httpURLConnection.disconnect();
             }

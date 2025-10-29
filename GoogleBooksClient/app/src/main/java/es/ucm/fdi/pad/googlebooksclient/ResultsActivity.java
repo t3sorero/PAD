@@ -49,8 +49,8 @@ public class ResultsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-            getSupportActionBar().setTitle(R.string.results + "(" + bookList.size() + ")");
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            String title = getString(R.string.results) + " (" + bookList.size() + ")";
+            getSupportActionBar().setTitle(title);
 
             Log.i(TAG, "ActionBar configurado");
         }

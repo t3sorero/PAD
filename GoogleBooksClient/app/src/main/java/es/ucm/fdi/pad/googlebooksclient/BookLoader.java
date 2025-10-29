@@ -16,8 +16,8 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
 
     private static final String TAG = BookLoader.class.getSimpleName();
 
-    private String queryString;
-    private String printType;
+    private final String queryString;
+    private final String printType;
 
     public BookLoader(@NonNull Context context, String queryString, String printType) {
         super(context);
@@ -74,7 +74,7 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
             return NetworksUtils.getResponseFromHttpUrl(bookInfoUrl);
 
         } catch (IOException e) {
-            Log.e(TAG, "Error cargando libros", e);
+            Log.e(TAG, "Error cargando libros"+ e.toString());
             return null;
         }
     }

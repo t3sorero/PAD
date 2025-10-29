@@ -18,8 +18,8 @@ import java.util.List;
 public class BookInfo implements Parcelable {
 
     private static final String TAG = BookInfo.class.getSimpleName();
-    private String title;
-    private String authors;
+    private final String title;
+    private final String authors;
     private URL infoLink;
 
     public BookInfo(String title, String authors, URL infoLink) {
