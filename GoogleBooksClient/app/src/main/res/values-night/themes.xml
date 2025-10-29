@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Tema base con ActionBar para modo oscuro -->
+    <!-- Tema base con ActionBar  -->
     <style name="Base.Theme.GoogleBooksClient" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Colores primarios -->
         <item name="colorPrimary">@color/blue_500</item>
@@ -40,7 +40,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- Estilo para EditText modo oscuro -->
+    <!-- Estilo para EditText  -->
     <style name="Widget.App.EditText.Dark" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">16sp</item>
         <item name="android:padding">12dp</item>
@@ -49,7 +49,7 @@
         <item name="backgroundTint">@color/blue_500</item>
     </style>
 
-    <!-- Estilo para Button modo oscuro -->
+    <!-- Estilo para Button  -->
     <style name="Widget.App.Button.Dark" parent="Widget.AppCompat.Button">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white</item>
@@ -58,35 +58,35 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <!-- Estilo para RadioButton modo oscuro -->
+    <!-- Estilo para RadioButton  -->
     <style name="Widget.App.RadioButton.Dark" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="buttonTint">@color/blue_500</item>
     </style>
 
-    <!-- Estilo para ActionBar modo oscuro -->
+    <!-- Estilo para ActionBar  -->
     <style name="Widget.App.ActionBar.Dark" parent="Widget.AppCompat.ActionBar.Solid">
         <item name="background">@color/neutral_dark_gray</item>
         <item name="titleTextStyle">@style/TextAppearance.App.ActionBar.Title.Dark</item>
         <item name="elevation">4dp</item>
     </style>
 
-    <!-- Título de ActionBar modo oscuro -->
+    <!-- Título de ActionBar  -->
     <style name="TextAppearance.App.ActionBar.Title.Dark" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Estilos para CardView modo oscuro -->
+    <!-- Estilos para CardView  -->
     <style name="Widget.App.CardView" parent="CardView">
         <item name="cardBackgroundColor">@color/neutral_dark_gray</item>
         <item name="cardCornerRadius">12dp</item>
         <item name="cardElevation">4dp</item>
     </style>
 
-    <!-- Textos de los libros modo oscuro -->
+    <!-- Textos de los libros -->
     <style name="TextAppearance.App.BookTitle" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>

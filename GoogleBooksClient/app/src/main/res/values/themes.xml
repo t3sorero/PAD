@@ -79,7 +79,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Estilos para CardView - ACTUALIZADO -->
+    <!-- Estilos para CardView -->
     <style name="Widget.App.CardView" parent="CardView">
         <item name="cardBackgroundColor">@color/neutral_light_gray</item>
         <item name="cardCornerRadius">12dp</item>
