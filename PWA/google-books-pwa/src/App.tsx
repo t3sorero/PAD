@@ -18,7 +18,7 @@ function App() {
     <div className="container">
       <header style={{ textAlign: 'center', marginBottom: '40px' }}>
         <h1 style={{ fontSize: '36px', color: '#1976d2', marginBottom: '10px' }}>
-          📚 Buscador de Libros
+          Buscador de Libros
         </h1>
         <p style={{ color: '#666' }}>
           Busca libros en Google Books
