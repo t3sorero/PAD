@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { SearchBar } from './components/SearchBar';
+import { BookList } from './components/BookList';
+import { RecentBooks } from './components/RecentBooks';
+import { useBookSearch } from './hooks/useBookSearch';
+import './styles/global.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { books, isLoading, error, performSearch } = useBookSearch();
+  const [searchPerformed, setSearchPerformed] = useState(false);
+
+  const handleSearch = (title: string) => {
+    setSearchPerformed(true);
+    performSearch(title);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <div className="container">
+      <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <h1 style={{ fontSize: '36px', color: '#1976d2', marginBottom: '10px' }}>
+          📚 Buscador de Libros
+        </h1>
+        <p style={{ color: '#666' }}>
+          Busca libros en Google Books
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </header>
+
+      <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+
+      {isLoading && (
+        <p style={{ textAlign: 'center', fontSize: '18px', color: '#666' }}>
+          Cargando...
+        </p>
+      )}
+
+      {error && !isLoading && (
+        <p style={{ textAlign: 'center', fontSize: '18px', color: '#d32f2f' }}>
+          {error}
+        </p>
+      )}
+
+      {!isLoading && !error && books.length > 0 && (
+        <>
+          <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
+            Resultados ({books.length})
+          </h2>
+          <BookList books={books} />
+        </>
+      )}
+
+      {!searchPerformed && !isLoading && (
+        <RecentBooks />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
