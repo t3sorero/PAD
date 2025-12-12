@@ -8,7 +8,7 @@
     "build": "next build && npm run generate-sw",
     "generate-sw": "workbox generateSW workbox-config.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out",
+    "deploy": "gh-pages -d out -t",
     "start": "next start",
     "lint": "next lint"
   },

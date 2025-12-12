@@ -4,6 +4,9 @@ module.exports = {
     '**/*.{html,js,css,json,png,jpg,jpeg,svg,ico,webp,txt}'
   ],
   swDest: 'out/sw.js',
+  modifyURLPrefix: {
+    '': '/PAD/'
+  },
   clientsClaim: true,
   skipWaiting: true,
   runtimeCaching: [
